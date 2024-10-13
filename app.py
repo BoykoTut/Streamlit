@@ -15,7 +15,15 @@ if st.button("Submit"):
     if input_text:
         # Analyze the input text
         result = emotion_classifier([input_text])
-        st.write(result)
+        
+        # Extract label and score
+        label = result[0]['label']
+        score = result[0]['score']
+
+        # Display results in a user-friendly format
+        st.subheader("Analysis Result:")
+        st.write(f"**Emotion Detected:** {label}")
+        st.write(f"**Confidence Score:** {score:.2f}")  # Format score to 2 decimal places
     else:
         st.warning("Please enter some text before submitting.")
 
