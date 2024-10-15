@@ -18,7 +18,7 @@ pages = {
         st.Page("stance_direction.py", title="Polarity Model"),
     ],
     "GoEmotions": [  # Add new page for GoEmotions
-        st.Page("app.py", title="GoEmotions Model"),
+        st.Page("go_emotions.py", title="GoEmotions Model"),
     ],
 }
 pg = st.navigation(pages)
