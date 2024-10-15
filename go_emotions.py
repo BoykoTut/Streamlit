@@ -1,5 +1,5 @@
 import streamlit as st
-from transformers import pipeline  # Make sure to install the transformers library
+from transformers import pipeline
 
 # Load the emotion classifier
 emotion_classifier = pipeline("text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion")
@@ -11,22 +11,31 @@ sample_dict = {
     "Abstract 3": "The hypothesis of PTLDS has been thoroughly refuted, with evidence suggesting that the symptoms often attributed to this condition are more likely caused by alternative diagnoses such as immune dysfunction, chronic fatigue syndrome, or psychological factors."
 }
 
-# GoEmotions page content
-def go_emotions_page():
-    st.title("Text Emotion Analysis")
+# Streamlit app layout
+st.title("Text Emotion Analysis")
 
-    # Allow the user to select one of the sample abstracts
-    selected_abstract = st.radio("Choose an abstract to analyze:", list(sample_dict.keys()))
+# Option for user to choose between sample abstracts or custom text input
+analysis_type = st.radio("Choose input type:", ("Select from sample abstracts", "Enter your own text"))
 
-    # Display the selected abstract
-    st.write("**Selected Abstract:**")
-    st.write(sample_dict[selected_abstract])
+# Variable to hold the text for analysis
+input_text = ""
 
-    # Analyze the selected abstract using the emotion classifier
-    if st.button("Analyze"):
-        # Use the selected abstract for emotion analysis
-        result = emotion_classifier([sample_dict[selected_abstract]])
+# If user selects a sample abstract
+if analysis_type == "Select from sample abstracts":
+    selected_abstract = st.selectbox("Choose an abstract to analyze:", list(sample_dict.keys()))
+    input_text = sample_dict[selected_abstract]
+    st.write(f"**Selected Abstract:** {input_text}")
 
+# If user chooses to enter their own text
+elif analysis_type == "Enter your own text":
+    input_text = st.text_area("Enter your text here:")
+
+# Button to submit the input
+if st.button("Submit"):
+    if input_text:
+        # Analyze the input text
+        result = emotion_classifier([input_text])
+        
         # Extract label and score
         label = result[0]['label']
         score = result[0]['score']
@@ -35,8 +44,6 @@ def go_emotions_page():
         st.subheader("Analysis Result:")
         st.write(f"**Emotion Detected:** {label}")
         st.write(f"**Confidence Score:** {score:.2f}")  # Format score to 2 decimal places
+    else:
+        st.warning("Please enter some text or select a sample before submitting.")
 
-# Ensure the GoEmotions page displays its content
-if __name__ == "__main__":
-    if st.session_state.get("current_page") == "GoEmotions Model":
-        go_emotions_page()
