@@ -11,15 +11,15 @@ from streamlit_shap import st_shap
 pages = {
     "Home": [
         st.Page("about_our_project.py", title="About"),
-    #    st.Page("trial.py", title="Try it out"),
     ],
     "Text Classification Models": [
         st.Page("relevance_detection.py", title="Relevance Model"),
         st.Page("stance_detection.py", title="Stance Model"),
         st.Page("stance_direction.py", title="Polarity Model"),
-        #st.Page("about_our_project.py", title="About"),
     ],
-    
+    "GoEmotions": [  # Add new page for GoEmotions
+        st.Page("go_emotions.py", title="GoEmotions Model"),
+    ],
 }
 pg = st.navigation(pages)
 pg.run()
