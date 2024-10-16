@@ -10,6 +10,3 @@ st.write("## Presentation Slides")
 # Embed the PDF using an iframe
 st.components.v1.iframe(pdf_url, width=700, height=800)
 
-# Optional: Download button for the PDF
-st.markdown(f"[Download Presentation PDF]({pdf_url})")
-
