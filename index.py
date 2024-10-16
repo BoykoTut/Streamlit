@@ -1,13 +1,12 @@
 import streamlit as st
 import time
 import joblib
-from rel_model import relclf
 from pathlib import Path
-
 import pandas as pd
 import shap
 from streamlit_shap import st_shap
 
+# Define your navigation pages with an added entry for the presentation
 pages = {
     "Home": [
         st.Page("about_our_project.py", title="About"),
@@ -17,10 +16,15 @@ pages = {
         st.Page("stance_detection.py", title="Stance Model"),
         st.Page("stance_direction.py", title="Polarity Model"),
     ],
-    "GoEmotions": [  # Add new page for GoEmotions
+    "GoEmotions": [
         st.Page("go_emotions.py", title="GoEmotions Model"),
     ],
+    "Assignment 3 Presentation": [  # New page for PDF presentation
+        st.Page("presentation.py", title="View Presentation"),
+    ],
 }
+
+# Initialize the navigation and run the selected page
 pg = st.navigation(pages)
 pg.run()
 
