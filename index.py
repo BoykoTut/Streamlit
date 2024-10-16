@@ -20,7 +20,7 @@ pages = {
         st.Page("go_emotions.py", title="GoEmotions Model"),
     ],
     "Assignment 3 Presentation": [  # New page for PDF presentation
-        #st.Page("presentation.py", title="View Presentation"),
+        st.Page("presentation.py", title="Presentation"),
     ],
 }
 
