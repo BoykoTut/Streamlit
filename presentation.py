@@ -2,13 +2,14 @@ import streamlit as st
 
 st.title("Assignment 3 Presentation")
 
-pdf_path = "Assignment_3_Presentation.pdf"  # Make sure this path is correct
+# Use the raw URL for the PDF
+pdf_url = "https://raw.githubusercontent.com/BoykoTut/Streamlit/5e339a92771c2c4be6bdfc29320fb9234fa92abf/Assignemnt%203%20Presentation.pdf"
+
 st.write("## Presentation Slides")
 
-# Embed the PDF with an iframe for easy viewing
-st.markdown(f'<iframe src="file://{pdf_path}" width="700" height="800" style="border: none;"></iframe>', unsafe_allow_html=True)
+# Embed the PDF using an iframe
+st.components.v1.iframe(pdf_url, width=700, height=800)
 
 # Optional: Download button for the PDF
-with open(pdf_path, "rb") as pdf_file:
-    pdf_data = pdf_file.read()
-    st.download_button(label="Download Presentation PDF", data=pdf_data, file_name="Assignment_3_Presentation.pdf", mime="application/pdf")
+st.markdown(f"[Download Presentation PDF]({pdf_url})")
+
