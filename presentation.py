@@ -1,13 +1,12 @@
 import streamlit as st
 
-# Display the PDF presentation using an iframe
 st.title("Assignment 3 Presentation")
 
-pdf_path = "Assignment_3_Presentation.pdf"  # Ensure this is the correct file path
+pdf_path = "Assignment_3_Presentation.pdf"  # Make sure this path is correct
 st.write("## Presentation Slides")
 
 # Embed the PDF with an iframe for easy viewing
-st.components.v1.iframe(f"file://{pdf_path}", width=700, height=800)
+st.markdown(f'<iframe src="file://{pdf_path}" width="700" height="800" style="border: none;"></iframe>', unsafe_allow_html=True)
 
 # Optional: Download button for the PDF
 with open(pdf_path, "rb") as pdf_file:
