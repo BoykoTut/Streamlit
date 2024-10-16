@@ -1,17 +1,17 @@
 import streamlit as st
+from pdf2image import convert_from_path
 
 # Set the title of the Streamlit app
-st.title("Presentation Slides")
+st.title("Assignment 3 Presentation")
 
-# Use the raw URL for the PDF
-pdf_url = "https://raw.githubusercontent.com/BoykoTut/Streamlit/5e339a92771c2c4be6bdfc29320fb9234fa92abf/Assignemnt%203%20Presentation.pdf"
+# Path to the PDF file (you can also use the GitHub raw link)
+pdf_path = "Assignemnt_3_Presentation.pdf"  # Make sure this is the correct path
 
+# Convert PDF to images
+images = convert_from_path(pdf_path)
 
-# HTML code to embed the PDF
-pdf_embed_code = f"""
-<iframe src="{pdf_url}" width="700" height="800" style="border:none;"></iframe>
-"""
-
-# Use st.components.v1.html to render the HTML code
-st.components.v1.html(pdf_embed_code, height=800)
+# Display the images in the Streamlit app
+st.write("## Presentation Slides")
+for i, image in enumerate(images):
+    st.image(image, caption=f'Slide {i + 1}', use_column_width=True)
 
